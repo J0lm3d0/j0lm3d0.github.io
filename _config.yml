@@ -10,17 +10,17 @@ baseurl: ''
 # The language of the webpage › http://www.lingoes.net/en/translator/langcode.htm
 # If it has the same name as one of the files in folder `_data/locales`, the layout language will also be changed,
 # otherwise, the layout language will use the default value of 'en'.
-lang: en
+lang: es
 
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
-timezone: Asia/Shanghai
+timezone: Europe/Madrid
 
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Chirpy                          # the main title
+title: J0lm3d0                        # the main title
 
-tagline: A text-focused Jekyll theme   # it will display as the sub-title
+tagline: CTF Writeups                  # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   A minimal, portfolio, sidebar,
@@ -28,26 +28,29 @@ description: >-                        # used by seo meta and the atom feed
   and focuses on text presentation.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
-url: ''
+url: 'https://j0lm3d0.github.io'
 
 github:
-  username: github_username             # change to your github username
+  username: J0lm3d0             # change to your github username
 
 twitter:
-  username: twitter_username            # change to your twitter username
+  username: J0lm3d0            # change to your twitter username
+
+linkedin:
+  username: j0lm3d0
 
 social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
-  name: your_full_name
-  email: example@doamin.com             # change to your email address
+  name: J0lm3d0
+  email: jorge.olmedo.98@gmail.com             # change to your email address
   links:
     # The first element serves as the copyright owner's link
-    - https://twitter.com/username      # change to your twitter homepage
-    - https://github.com/username       # change to your github homepage
+    - https://twitter.com/J0lm3d0      # change to your twitter homepage
+    - https://github.com/J0lm3d0       # change to your github homepage
     # Uncomment below to add more social links
     # - https://www.facebook.com/username
-    # - https://www.linkedin.com/in/username
+    - https://www.linkedin.com/in/j0lm3d0/
 
 google_site_verification: google_meta_tag_verification # change to your verification string
 
@@ -72,7 +75,7 @@ google_analytics:
 #     light  - Use the light color scheme
 #     dark   - Use the dark color scheme
 #
-theme_mode:   # [light|dark]
+theme_mode: dark  # [light|dark]
 
 # The CDN endpoint for images.
 # Notice that once it is assigned, the CDN url
@@ -82,7 +85,7 @@ theme_mode:   # [light|dark]
 img_cdn: ''
 
 # the avatar on sidebar, support local or CORS resources
-avatar: https://cdn.jsdelivr.net/gh/cotes2020/chirpy-images/commons/avatar.jpg
+avatar: https://cdna.artstation.com/p/assets/images/images/022/342/774/large/nikita-poghainyi-viber-2019-08-04-15-41-05.jpg
 
 # boolean type, the global switch for ToC in posts.
 toc: true
@@ -91,7 +94,7 @@ disqus:
   comments: false  # boolean type, the global switch for posts comments.
   shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
-paginate: 10
+paginate: 6
 
 # ------------ The following options are not recommended to be modified ------------------
 

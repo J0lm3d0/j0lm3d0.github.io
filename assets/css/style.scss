@@ -10,3 +10,12 @@ $tab-count: {{ site.tabs | size | plus: 1 }}; // plus 1 for home tab
 @import "{{ site.theme }}";
 
 /* append your custom style below */
+
+img.htb {
+ border: 1px solid;
+ border-radius: 50%;
+ width: 32px;
+ height: 32px;
+ margin-top: .7rem;
+ display: inline-block;
+}
