@@ -46,7 +46,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 
 Al solo encontrarse abiertos los puertos 22 y 80, y no contar con ningún tipo de credenciales, comienzo enumerando el servidor web. En la siguiente imagen se puede ver la página principal que aparece al acceder desde un navegador.
 
-![Página principal del servidor web](../assets/img/HTB/Knife/mainpage.png)
+![Página principal del servidor web](assets/img/HTB/Knife/mainpage.png)
 
 En la página no aparece más información, no existe ningún enlace que nos lleve a otra página ni ningún tipo de pista en el código fuente. Por tanto, procedo a realizar una búsqueda mediante fuerza bruta de directorios y/o ficheros ocultos con el script `http-enum` de *Nmap* y con `Gobuster`. La búsqueda mediante *http_enum* nos encuentra el directorio "icons", mientras que en la búsqueda con *Gobuster*, utilizando el diccionario "directory-list-2.3-medium'' de `Dirbuster`, se observa que solo encuentra el típico "server-status".
 
@@ -79,21 +79,21 @@ Pero, al acceder ahora a la ruta "icons/small", me encuentro con el mismo proble
 
 En este punto, se me ocurre mirar con que tecnologías está trabajando el servidor por detrás y, por supuesto, las versiones de estas. Por tanto, utilizo la herramienta `WhatWeb` especificando las 3 páginas que he encontrado. También se podría utilizar el plugin `Wappalyzer`, disponible en la mayoría de navegadores.
 
-![Enumeramos las tecnologías que utiliza el servidor web](../assets/img/HTB/Knife/whatweb.png)
+![Enumeramos las tecnologías que utiliza el servidor web](assets/img/HTB/Knife/whatweb.png)
 
 Del resultado obtenido consigo enumerar que el servidor web está utilizando PHP 8.1.0-dev, ya que la versión de Apache la obtuve mediante *Nmap* previamente. Busco esta versión con la herramienta `SearchSploit` y veo que existe un exploit que permite ejecución remota de código.
 
-![Búsqueda de exploits para la versión de PHP](../assets/img/HTB/Knife/searchsploit.png)
+![Búsqueda de exploits para la versión de PHP](assets/img/HTB/Knife/searchsploit.png)
 
 ## Acceso a la máquina
 
 La explotación consiste en incluir una cabecera "User-Agentt" en la petición al servidor web, que contendrá la llamada a una función "zerodiumsystem", cuyo argumento será el comando que queramos ejecutar a nivel de sistema. Tras buscar información en Internet, compruebo que está vulnerabilidad se trata de una puerta trasera (backdoor) en el código fuente que colocaron unos ciberdelincuentes después de conseguir acceder al repositorio GIT interno de PHP.
 
-![Script en Python que explota la vulnerabilidad de la versión de PHP](../assets/img/HTB/Knife/phpexploit.png)
+![Script en Python que explota la vulnerabilidad de la versión de PHP](assets/img/HTB/Knife/phpexploit.png)
 
 Al lanzar el script me pide introducir la URL completa y, como es correcta y el servidor es vulnerable, comienza a simularme una shell, aunque, como se ha visto, por detrás está realizando una petición HTTP cada vez que escribo un comando. Intento lanzarme una shell inversa utilizando este exploit, pero no llega a realizarse correctamente. Por tanto, recurro a la herramienta `Curl` para realizar una petición que me envíe una shell de la máquina víctima a mi máquina.
 
-![Utilizamos curl para lanzarnos una shell inversa](../assets/img/HTB/Knife/revshell.png)
+![Utilizamos curl para lanzarnos una shell inversa](assets/img/HTB/Knife/revshell.png)
 
 Veo que obtengo la shell como el usuario "james", por lo que pruebo a sacar la flag de usuario no privilegiado y se me permite visualizarla correctamente.
 
@@ -109,11 +109,11 @@ Una vez dentro de la máquina, comienzo a enumerar el sistema para intentar esca
 
 Con el comando *sudo -l* compruebo si puede ejecutarse algún archivo con privilegios de otro usuario o sin proporcionar contraseña. En este caso, se puede ejecutar *knife* con privilegios de "root" y sin proporcionar contraseña. También hago uso del comando *file* para saber el tipo de archivo que es, y compruebo que se trata de un archivo ejecutable programado en Ruby.
 
-![Enumeramos el tipo de archivo que es *knife*](../assets/img/HTB/Knife/knifefile.png)
+![Enumeramos el tipo de archivo que es *knife*](assets/img/HTB/Knife/knifefile.png)
 
 Tras buscar información sobre este archivo de Ruby en internet, compruebo que existe una manera de ejecutar código Ruby, utilizando el subcomando *exec*. Con este subcomando puede lanzarse código escrito en la misma línea o pasar como argumento un script previamente creado.
 
-![Documentación sobre *knife*](../assets/img/HTB/Knife/knifedoc.png)
+![Documentación sobre *knife*](assets/img/HTB/Knife/knifedoc.png)
 
 En este caso, al poder ejecutar *knife* con permisos de "root", ejecuto el código en Ruby correspondiente al lanzamiento de una shell, para así obtener una shell como usuario privilegiado y tener acceso total a la máquina, pudiendo visualizar la flag final.
 
