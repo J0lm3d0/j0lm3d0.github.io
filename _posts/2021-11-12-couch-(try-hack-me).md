@@ -1,7 +1,7 @@
 ---
 title: Couch (Try Hack Me)
 author: J0lm3d0
-date: 2021-10-12 12:00:00 +0200
+date: 2021-11-12 12:00:00 +0200
 categories: [TryHackMe]
 tags: [linux, couchdb, docker]
 pin: false
@@ -82,7 +82,7 @@ Tras enumerar más a fondo esas 2 bases de datos, encuentro en "secret" un docum
 {
   "_id": "a1320dd69fb4570d0a3d26df4e000be7",
   "_rev": "2-57b28bd986d343cacd9cb3fca0b20c46",
-  "passwordbackup": "atena:t4qfzcc4qN##"
+  "passwordbackup": "atena:t4*******N##"
 }
 ```
 
@@ -91,7 +91,7 @@ Con las credenciales obtenidas, logro conectarme a la máquina por SSH y obtengo
 ```
 atena@ubuntu:~$ cat user.txt
 
-THM{1ns3cure_couchdb}
+THM{********_*******}
 ```
 
 ## Escalada de privilegios
@@ -120,7 +120,7 @@ uid=0(root) gid=0(root) groups=0(root),1(bin),2(daemon),3(sys),4(adm),6(disk),10
 
 / # cat /mnt/root/root.txt 
 
-THM{RCE_us1ng_Docker_API}
+THM{***_*****_******_***}
 ```
 
 Además, a modo de curiosidad, explico una forma para poder ejecutar el contenedor de la máquina víctima en nuestra máquina de atacante en este caso.
