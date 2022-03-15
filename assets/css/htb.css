@@ -1,0 +1,10 @@
+img.htb {
+ border: 1px solid;
+ border-radius: 50%;
+ width: 32px;
+ height: 32px;
+ margin-top: .7rem;
+ display: inline-block;
+}
+
+<a href="https://hackthebox.eu/j0lm3d0/" aria-label="hackthebox"><img alt="HackTheBox" src="/assets/img/favicons/htb.webp" class="htb"> </a> 
